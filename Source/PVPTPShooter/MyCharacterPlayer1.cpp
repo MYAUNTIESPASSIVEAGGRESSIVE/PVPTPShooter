@@ -58,16 +58,24 @@ void AMyCharacterPlayer1::Tick(float DeltaTime)
 void AMyCharacterPlayer1::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-	// Player World Movement
-	PlayerInputComponent->BindAxis("MoveForward", this, &AMyCharacterPlayer1::MoveForward);
-	PlayerInputComponent->BindAxis("MoveRight", this, &AMyCharacterPlayer1::MoveRight);
 
-	// Player Camera Movememt
-	PlayerInputComponent->BindAxis("LookRight", this, &APawn::AddControllerPitchInput);
-	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerYawInput);
+	if (!UseGamePad) 
+	{
+		// Player World Movement
+		PlayerInputComponent->BindAxis("MoveForward", this, &AMyCharacterPlayer1::MoveForward);
+		PlayerInputComponent->BindAxis("MoveRight", this, &AMyCharacterPlayer1::MoveRight);
 
-	// Player One Actions
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AMyCharacterPlayer1::Jump);
+		// Player Camera Movememt
+		PlayerInputComponent->BindAxis("LookRight", this, &APawn::AddControllerPitchInput);
+		PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerYawInput);
+
+		// Player One Actions
+		PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AMyCharacterPlayer1::Jump);
+	}
+	else
+	{
+
+	}
 }
 
 void AMyCharacterPlayer1::MoveForward(float axis) 

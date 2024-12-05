@@ -32,6 +32,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = TPCamera)
 	class UCameraComponent* PlayerCamera;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Input Type")
+	bool UseGamePad = false;
+
 	void Jump();
 
 	void MoveForward(float value);
