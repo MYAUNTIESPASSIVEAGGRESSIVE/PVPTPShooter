@@ -28,7 +28,7 @@ public:
 	float MoveSpeed;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Player1Anim")
-	class APawn* Pawn;
+	class APawn* Player;
 
 };
 

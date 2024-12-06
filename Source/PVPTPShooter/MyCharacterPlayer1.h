@@ -36,6 +36,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input Type")
 	bool bUseGamePad = false;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement Variables")
+	float MovementSpeed = 600.0f;
+
 	void Shoot();
 
 	void MoveForward(float value);

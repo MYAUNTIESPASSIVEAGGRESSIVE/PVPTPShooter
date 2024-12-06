@@ -34,9 +34,10 @@ AMyCharacterPlayer1::AMyCharacterPlayer1()
 	
 	// variables for character movement
 	GetCharacterMovement()->bOrientRotationToMovement = true;
-	GetCharacterMovement()->RotationRate = FRotator(0.0f, 360.0f, 0.0f);
+	GetCharacterMovement()->RotationRate = FRotator(0.0f, 180.0f, 0.0f);
 	GetCharacterMovement()->JumpZVelocity = 600.0f;
 	GetCharacterMovement()->AirControl = 0.2f;
+	GetCharacterMovement()->MaxWalkSpeed = MovementSpeed;
 
 }
 
@@ -71,6 +72,7 @@ void AMyCharacterPlayer1::SetupPlayerInputComponent(UInputComponent* PlayerInput
 
 		// Player One Actions
 		PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
+		PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 		PlayerInputComponent->BindAction("Shoot", IE_Pressed, this, &AMyCharacterPlayer1::Shoot);
 	}
 	else
@@ -85,6 +87,7 @@ void AMyCharacterPlayer1::SetupPlayerInputComponent(UInputComponent* PlayerInput
 
 		// Player Two Actions
 		PlayerInputComponent->BindAction("JumpGP", IE_Pressed, this, &ACharacter::Jump);
+		PlayerInputComponent->BindAction("JumpGP", IE_Released, this, &ACharacter::StopJumping);
 		PlayerInputComponent->BindAction("ShootGP", IE_Pressed, this, &AMyCharacterPlayer1::Shoot);
 	}
 }

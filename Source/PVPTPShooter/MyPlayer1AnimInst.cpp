@@ -6,25 +6,25 @@
 
 void UMyPlayer1AnimInst::NativeInitializeAnimation()
 {
-	if (Pawn == nullptr)
+	if (Player == nullptr)
 	{
-		Pawn = TryGetPawnOwner();
+		Player = TryGetPawnOwner();
 	}
 }
 
 void UMyPlayer1AnimInst::CustomUpdateAnimation()
 {
-	if (Pawn == nullptr)
+	if (Player == nullptr)
 	{
-		Pawn = TryGetPawnOwner();
+		Player = TryGetPawnOwner();
 	}
-	if (Pawn)
+	if (Player)
 	{
-		FVector Speed = Pawn->GetVelocity();
+		FVector Speed = Player->GetVelocity();
 		FVector LateralSpeed = FVector(Speed.X, Speed.Y, 0);
 		MoveSpeed = LateralSpeed.Size();
 
-		bIsJumping = Pawn->GetMovementComponent()->IsFalling();
+		bIsJumping = Player->GetMovementComponent()->IsFalling();
 	}
 }
 
