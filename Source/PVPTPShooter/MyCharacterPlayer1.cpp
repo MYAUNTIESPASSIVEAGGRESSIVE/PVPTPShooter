@@ -59,22 +59,33 @@ void AMyCharacterPlayer1::SetupPlayerInputComponent(UInputComponent* PlayerInput
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	if (!UseGamePad) 
+	if (!bUseGamePad) 
 	{
-		// Player World Movement
+		// Player One World Movement
 		PlayerInputComponent->BindAxis("MoveForward", this, &AMyCharacterPlayer1::MoveForward);
 		PlayerInputComponent->BindAxis("MoveRight", this, &AMyCharacterPlayer1::MoveRight);
 
-		// Player Camera Movememt
+		// Player One Camera Movememt
 		PlayerInputComponent->BindAxis("LookRight", this, &APawn::AddControllerPitchInput);
 		PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerYawInput);
 
 		// Player One Actions
-		PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AMyCharacterPlayer1::Jump);
+		PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
+		PlayerInputComponent->BindAction("Shoot", IE_Pressed, this, &AMyCharacterPlayer1::Shoot);
 	}
 	else
 	{
+		// Player Two World Movement
+		PlayerInputComponent->BindAxis("MoveForwardGP", this, &AMyCharacterPlayer1::MoveForward);
+		PlayerInputComponent->BindAxis("MoveRightGP", this, &AMyCharacterPlayer1::MoveRight);
 
+		// Player Two Camera Movememt
+		PlayerInputComponent->BindAxis("LookRightGP", this, &APawn::AddControllerPitchInput);
+		PlayerInputComponent->BindAxis("LookUpGP", this, &APawn::AddControllerYawInput);
+
+		// Player Two Actions
+		PlayerInputComponent->BindAction("JumpGP", IE_Pressed, this, &ACharacter::Jump);
+		PlayerInputComponent->BindAction("ShootGP", IE_Pressed, this, &AMyCharacterPlayer1::Shoot);
 	}
 }
 
@@ -96,7 +107,7 @@ void AMyCharacterPlayer1::MoveRight(float axis)
 	AddMovementInput(RightDirection, axis);
 }
 
-void AMyCharacterPlayer1::Jump() 
+void AMyCharacterPlayer1::Shoot()
 {
 
 }

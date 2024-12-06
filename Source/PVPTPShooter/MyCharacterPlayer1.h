@@ -26,16 +26,17 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = TPCamera)
 	class USpringArmComponent* CameraHolder;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = TPCamera)
 	class UCameraComponent* PlayerCamera;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Input Type")
-	bool UseGamePad = false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input Type")
+	bool bUseGamePad = false;
 
-	void Jump();
+	void Shoot();
 
 	void MoveForward(float value);
 
