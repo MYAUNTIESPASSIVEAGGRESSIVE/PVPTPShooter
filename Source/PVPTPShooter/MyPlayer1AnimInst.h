@@ -25,6 +25,9 @@ public:
 	bool bIsJumping;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Player1Anim")
+	bool bIsCrouched;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Player1Anim")
 	float MoveSpeed;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Player1Anim")
