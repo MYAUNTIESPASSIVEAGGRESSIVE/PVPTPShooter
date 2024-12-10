@@ -11,7 +11,6 @@
 // Sets default values
 AMyPlayerCharacter::AMyPlayerCharacter()
 {
- 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	// Camera Creator
@@ -60,7 +59,6 @@ void AMyPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-
 	if (!bUseGamePad)
 	{
 		// Player One World Movement
@@ -76,7 +74,6 @@ void AMyPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 		PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 		PlayerInputComponent->BindAction("Shoot", IE_Pressed, this, &AMyPlayerCharacter::Shoot);
 	}
-	/*
 	else
 	{
 		// Player Two World Movement
@@ -92,7 +89,6 @@ void AMyPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 		PlayerInputComponent->BindAction("JumpGP", IE_Released, this, &ACharacter::StopJumping);
 		PlayerInputComponent->BindAction("ShootGP", IE_Pressed, this, &AMyPlayerCharacter::Shoot);
 	}
-	*/
 
 }
 
