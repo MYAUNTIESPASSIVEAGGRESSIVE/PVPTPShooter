@@ -26,18 +26,31 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+
+	// Camera Properties
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = TPCamera)
 	class USpringArmComponent* CameraHolder;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = TPCamera)
 	class UCameraComponent* PlayerCamera;
 
+
+	// Gamepad Checker
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input Type")
 	bool bUseGamePad = false;
 
+	// Player Variables
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement Variables")
 	float MovementSpeed = 600.0f;
 
+	// Weapon Classes
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class AMyWeaponBase> WeaponClass;
+
+	class AMyWeaponBase* MyWeapon;
+
+
+	// Functions
 	void Shoot();
 
 	void MoveForward(float value);

@@ -7,6 +7,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "MyWeaponBase.h"
 
 // Sets default values
 AMyPlayerCharacter::AMyPlayerCharacter()
@@ -37,6 +38,25 @@ AMyPlayerCharacter::AMyPlayerCharacter()
 	GetCharacterMovement()->JumpZVelocity = 600.0f;
 	GetCharacterMovement()->AirControl = 0.2f;
 	GetCharacterMovement()->MaxWalkSpeed = MovementSpeed;
+
+	//Weapon Spawning
+	FActorSpawnParameters WeaponSpawnParam;
+	WeaponSpawnParam.bNoFail = true;
+	WeaponSpawnParam.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+	if (WeaponClass)
+	{
+		FTransform WeaponTransform;
+		WeaponTransform.SetLocation(FVector::ZeroVector);
+		WeaponTransform.SetRotation(FQuat(FRotator::ZeroRotator));
+
+		MyWeapon = GetWorld()->SpawnActor<AMyWeaponBase>(WeaponClass, WeaponTransform, WeaponSpawnParam);
+
+		if (MyWeapon)
+		{
+			MyWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, FName("P_GunHolder_r"));
+		}
+	}
 
 }
 
@@ -112,6 +132,9 @@ void AMyPlayerCharacter::MoveRight(float axis)
 
 void AMyPlayerCharacter::Shoot()
 {
-
+	if (MyWeapon)
+	{
+		MyWeapon->ShootGun();
+	}
 }
 
