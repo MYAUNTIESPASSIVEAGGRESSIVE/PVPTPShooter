@@ -25,7 +25,16 @@ public:
 	bool bIsInAir;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "PlayerAnim")
+	bool bIsCrouching;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "PlayerAnim")
 	float PlayerMoveSpeed;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "PlayerAnim")
+	float PlayerForwardSpeed;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "PlayerAnim")
+	float PlayerRightSpeed;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "PlayerAnim")
 	class APawn* PlayerPawn;

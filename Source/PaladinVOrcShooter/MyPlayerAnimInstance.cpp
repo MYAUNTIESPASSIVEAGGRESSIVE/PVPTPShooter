@@ -21,10 +21,15 @@ void UMyPlayerAnimInstance::UpdatePlrAnimation()
 	if (PlayerPawn)
 	{
 		FVector Speed = PlayerPawn->GetVelocity();
-		FVector LateralSpeed = FVector(Speed.X, Speed.Y, 0);
-		PlayerMoveSpeed = LateralSpeed.Size();
+		FVector Forward = PlayerPawn->GetActorForwardVector();
+		FVector Right = PlayerPawn->GetActorRightVector();
+
+		PlayerForwardSpeed = FVector::DotProduct(Speed, Forward);
+		PlayerRightSpeed = FVector::DotProduct(Speed, Right);
 
 		bIsInAir = PlayerPawn->GetMovementComponent()->IsFalling();
+
+		
 	}
 }
 

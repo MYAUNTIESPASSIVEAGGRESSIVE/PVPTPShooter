@@ -18,14 +18,16 @@ AMyPlayerCharacter::AMyPlayerCharacter()
 	CameraHolder = CreateDefaultSubobject<USpringArmComponent>(TEXT("Camera Holder"));
 	CameraHolder->SetupAttachment(RootComponent);
 
+	CameraHolder->SetRelativeLocation(FVector(0, 0, 70.0));
 	CameraHolder->TargetArmLength = 300.0f;
+	CameraHolder->SocketOffset = FVector(0.0, 70.0, 20.0);
 
 	PlayerCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("Player Camera"));
 	PlayerCamera->SetupAttachment(CameraHolder);
 
 	// Camera rotation bools
 	bUseControllerRotationPitch = false;
-	bUseControllerRotationYaw = false;
+	bUseControllerRotationYaw = true;
 	bUseControllerRotationRoll = false;
 
 	// what parts of the camera use the control rotation
@@ -34,18 +36,19 @@ AMyPlayerCharacter::AMyPlayerCharacter()
 
 	// variables for character movement
 	GetCharacterMovement()->bOrientRotationToMovement = true;
-	GetCharacterMovement()->RotationRate = FRotator(0.0f, 360.0f, 0.0f);
+	GetCharacterMovement()->RotationRate = FRotator(0.0f, 0.0f, 0.0f);
 	GetCharacterMovement()->JumpZVelocity = 600.0f;
 	GetCharacterMovement()->AirControl = 0.2f;
 	GetCharacterMovement()->MaxWalkSpeed = MovementSpeed;
 
-	//Weapon Spawning
-	FActorSpawnParameters WeaponSpawnParam;
-	WeaponSpawnParam.bNoFail = true;
-	WeaponSpawnParam.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-
 	if (WeaponClass)
 	{
+		UE_LOG(LogTemp, Log, TEXT("Weapon Can Spawn"));
+
+		FActorSpawnParameters WeaponSpawnParam;
+		WeaponSpawnParam.bNoFail = true;
+		WeaponSpawnParam.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
 		FTransform WeaponTransform;
 		WeaponTransform.SetLocation(FVector::ZeroVector);
 		WeaponTransform.SetRotation(FQuat(FRotator::ZeroRotator));
@@ -54,7 +57,7 @@ AMyPlayerCharacter::AMyPlayerCharacter()
 
 		if (MyWeapon)
 		{
-			MyWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, FName("P_GunHolder_r"));
+			MyWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, FName(PlayerSocketName));
 		}
 	}
 
@@ -93,6 +96,9 @@ void AMyPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 		PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 		PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 		PlayerInputComponent->BindAction("Shoot", IE_Pressed, this, &AMyPlayerCharacter::Shoot);
+		PlayerInputComponent->BindAction("Aiming", IE_Pressed, this, &AMyPlayerCharacter::Aiming);
+		PlayerInputComponent->BindAction("Aiming", IE_Released, this, &AMyPlayerCharacter::StopAiming);
+
 	}
 	else
 	{
@@ -138,3 +144,12 @@ void AMyPlayerCharacter::Shoot()
 	}
 }
 
+void AMyPlayerCharacter::Aiming()
+{
+	CameraHolder->TargetArmLength = 50.0f;
+}
+
+void AMyPlayerCharacter::StopAiming()
+{
+	CameraHolder->TargetArmLength = 300.0f;
+}

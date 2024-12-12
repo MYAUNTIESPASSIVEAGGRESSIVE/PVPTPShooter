@@ -44,14 +44,19 @@ public:
 	float MovementSpeed = 600.0f;
 
 	// Weapon Classes
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Weapons Class")
 	TSubclassOf<class AMyWeaponBase> WeaponClass;
-
 	class AMyWeaponBase* MyWeapon;
 
+	UPROPERTY(EditAnywhere, Category = "Socket Name")
+	FString PlayerSocketName;
 
 	// Functions
 	void Shoot();
+
+	void Aiming();
+
+	void StopAiming();
 
 	void MoveForward(float value);
 
