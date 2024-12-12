@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "MyWeaponBase.h"
 #include "MyPlayerCharacter.generated.h"
 
 UCLASS()
@@ -45,8 +46,8 @@ public:
 
 	// Weapon Classes
 	UPROPERTY(EditAnywhere, Category = "Weapons Class")
-	TSubclassOf<class AMyWeaponBase> WeaponClass;
-	class AMyWeaponBase* MyWeapon;
+	TSubclassOf <AMyWeaponBase > WeaponClass;
+	AMyWeaponBase* MyWeapon;
 
 	UPROPERTY(EditAnywhere, Category = "Socket Name")
 	FString PlayerSocketName;

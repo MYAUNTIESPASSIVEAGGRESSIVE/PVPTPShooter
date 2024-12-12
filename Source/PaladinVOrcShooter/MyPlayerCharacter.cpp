@@ -41,10 +41,15 @@ AMyPlayerCharacter::AMyPlayerCharacter()
 	GetCharacterMovement()->AirControl = 0.2f;
 	GetCharacterMovement()->MaxWalkSpeed = MovementSpeed;
 
+}
+
+// Called when the game starts or when spawned
+void AMyPlayerCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
 	if (WeaponClass)
 	{
-		UE_LOG(LogTemp, Log, TEXT("Weapon Can Spawn"));
-
 		FActorSpawnParameters WeaponSpawnParam;
 		WeaponSpawnParam.bNoFail = true;
 		WeaponSpawnParam.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
@@ -60,14 +65,6 @@ AMyPlayerCharacter::AMyPlayerCharacter()
 			MyWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, FName(PlayerSocketName));
 		}
 	}
-
-}
-
-// Called when the game starts or when spawned
-void AMyPlayerCharacter::BeginPlay()
-{
-	Super::BeginPlay();
-	
 }
 
 // Called every frame

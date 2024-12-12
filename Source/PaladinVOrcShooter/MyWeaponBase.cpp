@@ -35,7 +35,7 @@ void AMyWeaponBase::ShootGun()
 	{
 		FHitResult ShotHit;
 		FVector StartPos = GunMesh->GetComponentLocation();
-		FVector EndPos = (GunMesh->GetForwardVector() * WeaponData->WeaponRange) + StartPos;
+		FVector EndPos = (GunMesh->GetRightVector() * WeaponData->WeaponRange) + StartPos;
 		FCollisionQueryParams ColParams = FCollisionQueryParams();
 		bool bHasHit = ActorLineTraceSingle(ShotHit, StartPos, EndPos, ECollisionChannel::ECC_PhysicsBody, ColParams);
 
