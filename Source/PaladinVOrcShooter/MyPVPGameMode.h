@@ -1,4 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -14,4 +13,15 @@ class PALADINVORCSHOOTER_API AMyPVPGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 	
+public:
+	/*
+		AMyPVPGameMode();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Players")
+	AMyPlayerCharacter* PlayerOne;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Players")
+	AMyPlayerCharacter* PlayerTwo;
+	*/
+
 };

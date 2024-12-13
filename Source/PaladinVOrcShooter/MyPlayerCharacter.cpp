@@ -79,7 +79,8 @@ void AMyPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	if (!bUseGamePad)
+	/* 
+		if (!bUseGamePad)
 	{
 		// Player One World Movement
 		PlayerInputComponent->BindAxis("MoveForward", this, &AMyPlayerCharacter::MoveForward);
@@ -112,7 +113,7 @@ void AMyPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 		PlayerInputComponent->BindAction("JumpGP", IE_Released, this, &ACharacter::StopJumping);
 		PlayerInputComponent->BindAction("ShootGP", IE_Pressed, this, &AMyPlayerCharacter::Shoot);
 	}
-
+	*/
 }
 
 void AMyPlayerCharacter::MoveForward(float axis)
