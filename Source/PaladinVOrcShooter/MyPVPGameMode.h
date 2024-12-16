@@ -22,10 +22,4 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Players")
 	AMyPlayerCharacter* PlayerTwo;
-
-	virtual void BeginPlay() override;
-
-	UFUNCTION(BlueprintCallable)
-	void SpawnPlayers();
-
 };
