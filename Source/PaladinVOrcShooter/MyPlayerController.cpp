@@ -13,6 +13,13 @@ void AMyPlayerController::BeginPlay()
 	Super::BeginPlay();
 
 	possesedPawn = Cast<AMyPlayerCharacter>(GetPawn());
+
+	if (HUDOverlayAsset)
+	{
+		HUDOverlay = CreateWidget<UUserWidget>(this, HUDOverlayAsset);
+		HUDOverlay->AddToViewport();
+		HUDOverlay->SetVisibility(ESlateVisibility::Visible);
+	}
 }
 
 void AMyPlayerController::SetupInputComponent()
@@ -59,6 +66,8 @@ void AMyPlayerController::SetupInputComponent()
 	}
 }
 
+
+// casts movement to the respective areas when input from the player controller
 void AMyPlayerController::CastMoveForward(float value)
 {
 	if (possesedPawn)

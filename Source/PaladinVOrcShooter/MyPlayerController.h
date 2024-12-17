@@ -6,6 +6,7 @@
 #include "GameFramework/PlayerController.h"
 #include "MyPlayerCharacter.h"
 #include "MyPVPGameMode.h"
+#include "Blueprint/UserWidget.h"
 #include "MyPlayerController.generated.h"
 
 /**
@@ -23,6 +24,12 @@ public:
 	virtual void BeginPlay() override;
 
 	virtual void SetupInputComponent() override;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	TSubclassOf<class UUserWidget> HUDOverlayAsset;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
+	UUserWidget* HUDOverlay;
 
 	AMyPlayerCharacter* possesedPawn;
 

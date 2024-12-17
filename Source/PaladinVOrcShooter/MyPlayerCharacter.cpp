@@ -79,42 +79,6 @@ void AMyPlayerCharacter::Tick(float DeltaTime)
 void AMyPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-	/* 
-		if (!bUseGamePad)
-	{
-		// Player One World Movement
-		PlayerInputComponent->BindAxis("MoveForward", this, &AMyPlayerCharacter::MoveForward);
-		PlayerInputComponent->BindAxis("MoveRight", this, &AMyPlayerCharacter::MoveRight);
-
-		// Player One Camera Movememt
-		PlayerInputComponent->BindAxis("LookRight", this, &APawn::AddControllerPitchInput);
-		PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerYawInput);
-
-		// Player One Actions
-		PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-		PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
-		PlayerInputComponent->BindAction("Shoot", IE_Pressed, this, &AMyPlayerCharacter::Shoot);
-		PlayerInputComponent->BindAction("Aiming", IE_Pressed, this, &AMyPlayerCharacter::Aiming);
-		PlayerInputComponent->BindAction("Aiming", IE_Released, this, &AMyPlayerCharacter::StopAiming);
-
-	}
-	else
-	{
-		// Player Two World Movement
-		PlayerInputComponent->BindAxis("MoveForwardGP", this, &AMyPlayerCharacter::MoveForward);
-		PlayerInputComponent->BindAxis("MoveRightGP", this, &AMyPlayerCharacter::MoveRight);
-
-		// Player Two Camera Movememt
-		PlayerInputComponent->BindAxis("LookRightGP", this, &APawn::AddControllerPitchInput);
-		PlayerInputComponent->BindAxis("LookUpGP", this, &APawn::AddControllerYawInput);
-
-		// Player Two Actions
-		PlayerInputComponent->BindAction("JumpGP", IE_Pressed, this, &ACharacter::Jump);
-		PlayerInputComponent->BindAction("JumpGP", IE_Released, this, &ACharacter::StopJumping);
-		PlayerInputComponent->BindAction("ShootGP", IE_Pressed, this, &AMyPlayerCharacter::Shoot);
-	}
-	*/
 }
 
 void AMyPlayerCharacter::MoveForward(float axis)
@@ -153,4 +117,6 @@ void AMyPlayerCharacter::Aiming()
 void AMyPlayerCharacter::StopAiming()
 {
 	CameraHolder->TargetArmLength = 300.0f;
+
+
 }
