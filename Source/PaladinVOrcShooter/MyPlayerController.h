@@ -30,8 +30,27 @@ public:
 	void CastShoot();
 
 	UFUNCTION(BlueprintCallable)
+	void CastJump();
+
+	UFUNCTION(BlueprintCallable)
+	void CastStopJumping();
+
+	UFUNCTION(BlueprintCallable)
+	void CastAiming();
+
+	UFUNCTION(BlueprintCallable)
+	void CastStopAiming();
+
+	UFUNCTION(BlueprintCallable)
 	void CastMoveRight(float value);
 
 	UFUNCTION(BlueprintCallable)
 	void CastMoveForward(float value);
+
+	UFUNCTION(BlueprintCallable)
+	void CastLookRight(float value);
+
+	UFUNCTION(BlueprintCallable)
+	void CastLookUp(float value);
+
 };

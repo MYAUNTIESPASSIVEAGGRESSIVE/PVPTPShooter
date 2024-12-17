@@ -27,22 +27,34 @@ void AMyPlayerController::SetupInputComponent()
 			InputComponent->BindAxis("MoveForward", this, &AMyPlayerController::CastMoveForward);
 			InputComponent->BindAxis("MoveRight", this, &AMyPlayerController::CastMoveRight);
 
-			/*
-						// Player One Camera Movememt
-			InputComponent->BindAxis("LookRight", this, &APawn::AddControllerPitchInput);
-			InputComponent->BindAxis("LookUp", this, &APawn::AddControllerYawInput);
+			// Player One Camera Movememt
+			InputComponent->BindAxis("LookRight", this, &AMyPlayerController::CastLookRight);
+			InputComponent->BindAxis("LookUp", this, &AMyPlayerController::CastLookUp);
 
 			// Player One Actions
-			InputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-			InputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
-			InputComponent->BindAction("Shoot", IE_Pressed, this, &AMyPlayerCharacter::Shoot);
-			InputComponent->BindAction("Aiming", IE_Pressed, this, &AMyPlayerCharacter::Aiming);
-			InputComponent->BindAction("Aiming", IE_Released, this, &AMyPlayerCharacter::StopAiming);
-			*/
+			InputComponent->BindAction("Jump", IE_Pressed, this, &AMyPlayerController::CastJump);
+			InputComponent->BindAction("Jump", IE_Released, this, &AMyPlayerController::CastStopJumping);
+			InputComponent->BindAction("Shoot", IE_Pressed, this, &AMyPlayerController::CastShoot);
+			InputComponent->BindAction("Aiming", IE_Pressed, this, &AMyPlayerController::CastAiming);
+			InputComponent->BindAction("Aiming", IE_Released, this, &AMyPlayerController::CastStopAiming);
 		}
 		else
 		{
-			//null
+			// Player Two World Movement
+			InputComponent->BindAxis("MoveForwardGP", this, &AMyPlayerController::CastMoveForward);
+			InputComponent->BindAxis("MoveRightGP", this, &AMyPlayerController::CastMoveRight);
+
+			// Player Two Camera Movememt
+			InputComponent->BindAxis("LookRightGP", this, &AMyPlayerController::CastLookRight);
+			InputComponent->BindAxis("LookUpGP", this, &AMyPlayerController::CastLookUp);
+
+			// Player Two Actions
+			InputComponent->BindAction("JumpGP", IE_Pressed, this, &AMyPlayerController::CastJump);
+			InputComponent->BindAction("JumpGP", IE_Released, this, &AMyPlayerController::CastStopJumping);
+			InputComponent->BindAction("ShootGP", IE_Pressed, this, &AMyPlayerController::CastShoot);
+			InputComponent->BindAction("AimingGP", IE_Pressed, this, &AMyPlayerController::CastAiming);
+			InputComponent->BindAction("AimingGP", IE_Released, this, &AMyPlayerController::CastStopAiming);
+			InputComponent->BindAction("AimingGP", IE_Released, this, &AMyPlayerController::CastStopAiming);
 		}
 	}
 }
@@ -63,10 +75,60 @@ void AMyPlayerController::CastMoveRight(float value)
 	}
 }
 
+
+void AMyPlayerController::CastLookUp(float value)
+{
+	if (possesedPawn)
+	{
+		possesedPawn->AddControllerYawInput(value);
+	}
+}
+
+void AMyPlayerController::CastLookRight(float value)
+{
+	if (possesedPawn)
+	{
+		possesedPawn->AddControllerPitchInput(value);
+	}
+}
+
+void AMyPlayerController::CastJump()
+{
+	if (possesedPawn)
+	{
+		possesedPawn->Jump();
+	}
+}
+
+void AMyPlayerController::CastStopJumping()
+{
+	if (possesedPawn)
+	{
+		possesedPawn->StopJumping();
+	}
+}
+
+
 void AMyPlayerController::CastShoot()
 {
 	if (possesedPawn)
 	{
 		possesedPawn->Shoot();
+	}
+}
+
+void AMyPlayerController::CastAiming()
+{
+	if (possesedPawn)
+	{
+		possesedPawn->Aiming();
+	}
+}
+
+void AMyPlayerController::CastStopAiming()
+{
+	if (possesedPawn)
+	{
+		possesedPawn->StopAiming();
 	}
 }

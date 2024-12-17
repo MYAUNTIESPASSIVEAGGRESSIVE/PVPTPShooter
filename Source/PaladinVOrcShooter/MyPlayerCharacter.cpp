@@ -7,6 +7,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "MyPlayerAnimInstance.h"
 #include "MyWeaponBase.h"
 
 // Sets default values
@@ -145,6 +146,8 @@ void AMyPlayerCharacter::Shoot()
 void AMyPlayerCharacter::Aiming()
 {
 	CameraHolder->TargetArmLength = 50.0f;
+
+	
 }
 
 void AMyPlayerCharacter::StopAiming()
