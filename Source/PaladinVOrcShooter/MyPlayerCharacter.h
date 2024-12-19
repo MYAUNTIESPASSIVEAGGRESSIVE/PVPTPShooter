@@ -44,6 +44,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement Variables")
 	float MovementSpeed = 600.0f;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Variables")
+	float CurrentPlayerHealth = 100.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Variables")
+	float MaxPlayerHealth = 100.0f;
+
 	// Weapon Classes
 	UPROPERTY(EditAnywhere, Category = "Weapons Class")
 	TSubclassOf <AMyWeaponBase > WeaponClass;

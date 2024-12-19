@@ -49,6 +49,8 @@ void AMyPlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
+	CurrentPlayerHealth = MaxPlayerHealth;
+
 	if (WeaponClass)
 	{
 		FActorSpawnParameters WeaponSpawnParam;
@@ -72,6 +74,11 @@ void AMyPlayerCharacter::BeginPlay()
 void AMyPlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (CurrentPlayerHealth > MaxPlayerHealth)
+	{
+		CurrentPlayerHealth = MaxPlayerHealth;
+	}
 
 }
 
