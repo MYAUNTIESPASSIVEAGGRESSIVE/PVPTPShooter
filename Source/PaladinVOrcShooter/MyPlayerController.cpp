@@ -40,9 +40,7 @@ void AMyPlayerController::SetupInputComponent()
 			InputComponent->BindAction("Aiming", IE_Pressed, this, &AMyPlayerController::CastAiming);
 			InputComponent->BindAction("Aiming", IE_Released, this, &AMyPlayerController::CastStopAiming);
 		}
-		
-
-		if(gameMode->PlayerTwo == Cast<AMyPlayerCharacter>(GetPawn()))
+		else
 		{
 			UE_LOG(LogTemp, Log, TEXT("player2 bound"));
 
