@@ -25,12 +25,6 @@ public:
 
 	virtual void SetupInputComponent() override;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
-	TSubclassOf<class UMyPlayerWidget> HUDOverlayAsset;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
-	UMyPlayerWidget* HUDOverlay;
-
 	AMyPlayerCharacter* possesedPawn;
 
 	UFUNCTION(BlueprintCallable)

@@ -15,8 +15,6 @@ class PALADINVORCSHOOTER_API UMyPlayerWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
-	UMyPlayerWidget();
-
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

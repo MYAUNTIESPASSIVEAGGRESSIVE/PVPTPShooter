@@ -13,13 +13,6 @@ void AMyPlayerController::BeginPlay()
 	Super::BeginPlay();
 
 	possesedPawn = Cast<AMyPlayerCharacter>(GetPawn());
-
-	if (HUDOverlayAsset)
-	{
-		HUDOverlay = CreateWidget<UUserWidget>(this, HUDOverlayAsset);
-		HUDOverlay->AddToViewport();
-		HUDOverlay->SetVisibility(ESlateVisibility::Visible);
-	}
 }
 
 void AMyPlayerController::SetupInputComponent()
@@ -47,9 +40,12 @@ void AMyPlayerController::SetupInputComponent()
 			InputComponent->BindAction("Aiming", IE_Pressed, this, &AMyPlayerController::CastAiming);
 			InputComponent->BindAction("Aiming", IE_Released, this, &AMyPlayerController::CastStopAiming);
 		}
-		else
+		
+
+		if(gameMode->PlayerTwo == Cast<AMyPlayerCharacter>(GetPawn()))
 		{
 			UE_LOG(LogTemp, Log, TEXT("player2 bound"));
+
 			// Player Two World Movement
 			InputComponent->BindAxis("MoveForwardGP", this, &AMyPlayerController::CastMoveForward);
 			InputComponent->BindAxis("MoveRightGP", this, &AMyPlayerController::CastMoveRight);

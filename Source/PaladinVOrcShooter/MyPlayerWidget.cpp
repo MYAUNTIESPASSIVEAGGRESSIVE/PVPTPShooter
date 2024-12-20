@@ -3,8 +3,4 @@
 
 #include "MyPlayerWidget.h"
 
-UMyPlayerWidget::UMyPlayerWidget()
-{
-
-}
 
