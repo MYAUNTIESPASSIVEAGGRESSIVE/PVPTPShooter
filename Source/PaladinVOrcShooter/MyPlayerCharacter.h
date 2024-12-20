@@ -69,4 +69,6 @@ public:
 
 	void MoveRight(float value);
 
+	void TakeDamage(int32 Damage);
+
 };

@@ -26,10 +26,10 @@ public:
 	virtual void SetupInputComponent() override;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
-	TSubclassOf<class UUserWidget> HUDOverlayAsset;
+	TSubclassOf<class UMyPlayerWidget> HUDOverlayAsset;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
-	UUserWidget* HUDOverlay;
+	UMyPlayerWidget* HUDOverlay;
 
 	AMyPlayerCharacter* possesedPawn;
 

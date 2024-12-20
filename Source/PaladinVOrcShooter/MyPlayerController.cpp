@@ -30,6 +30,8 @@ void AMyPlayerController::SetupInputComponent()
 	{
 		if (gameMode->PlayerOne == Cast<AMyPlayerCharacter>(GetPawn()))
 		{
+			UE_LOG(LogTemp, Log, TEXT("player1 bound"));
+
 			// Player One World Movement
 			InputComponent->BindAxis("MoveForward", this, &AMyPlayerController::CastMoveForward);
 			InputComponent->BindAxis("MoveRight", this, &AMyPlayerController::CastMoveRight);
@@ -47,6 +49,7 @@ void AMyPlayerController::SetupInputComponent()
 		}
 		else
 		{
+			UE_LOG(LogTemp, Log, TEXT("player2 bound"));
 			// Player Two World Movement
 			InputComponent->BindAxis("MoveForwardGP", this, &AMyPlayerController::CastMoveForward);
 			InputComponent->BindAxis("MoveRightGP", this, &AMyPlayerController::CastMoveRight);

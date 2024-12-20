@@ -127,3 +127,8 @@ void AMyPlayerCharacter::StopAiming()
 
 
 }
+
+void AMyPlayerCharacter::TakeDamage(int32 Damage)
+{
+
+}
