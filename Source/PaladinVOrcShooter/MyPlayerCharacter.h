@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "MyPlayerWidget.h"
 #include "MyWeaponBase.h"
 #include "MyPlayerCharacter.generated.h"
 
@@ -58,6 +59,11 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Socket Name")
 	FString PlayerSocketName;
 
+	//PlayerUI
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
+	UMyPlayerWidget* PlayerUI;
+
 	// Functions
 	void Shoot();
 
@@ -68,5 +74,7 @@ public:
 	void MoveForward(float value);
 
 	void MoveRight(float value);
+
+	void TakeDamage(float damage);
 
 };

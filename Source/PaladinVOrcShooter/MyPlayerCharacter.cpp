@@ -51,6 +51,7 @@ void AMyPlayerCharacter::BeginPlay()
 
 	CurrentPlayerHealth = MaxPlayerHealth;
 
+
 	if (WeaponClass)
 	{
 		FActorSpawnParameters WeaponSpawnParam;
@@ -126,4 +127,14 @@ void AMyPlayerCharacter::StopAiming()
 	CameraHolder->TargetArmLength = 300.0f;
 
 
+}
+
+void AMyPlayerCharacter::TakeDamage(float damage)
+{
+	CurrentPlayerHealth -= damage;
+
+	if (CurrentPlayerHealth > 0.0f)
+	{
+		CurrentPlayerHealth = 0.0f;
+	}
 }
