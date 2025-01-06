@@ -62,9 +62,6 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Socket Name")
 	FString PlayerSocketName;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
-	UMyPlayerWidget* PlayerUI;
-
 	// Functions
 	void Shoot();
 

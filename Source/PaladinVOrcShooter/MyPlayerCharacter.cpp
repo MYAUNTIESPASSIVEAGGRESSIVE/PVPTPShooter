@@ -52,8 +52,6 @@ void AMyPlayerCharacter::BeginPlay()
 
 	CurrentPlayerHealth = MaxPlayerHealth;
 
-	PlayerUI = CreateWidget<UMyPlayerWidget>(this);
-	PlayerUI->AddToPlayerScreen();
 
 	if (WeaponClass)
 	{
