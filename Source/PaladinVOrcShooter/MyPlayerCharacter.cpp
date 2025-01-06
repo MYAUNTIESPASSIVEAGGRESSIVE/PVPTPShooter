@@ -8,6 +8,7 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "MyPlayerAnimInstance.h"
+#include "MyPlayerController.h"
 #include "MyWeaponBase.h"
 
 // Sets default values
@@ -51,6 +52,8 @@ void AMyPlayerCharacter::BeginPlay()
 
 	CurrentPlayerHealth = MaxPlayerHealth;
 
+	PlayerUI = CreateWidget<UMyPlayerWidget>(this);
+	PlayerUI->AddToPlayerScreen();
 
 	if (WeaponClass)
 	{
@@ -129,12 +132,14 @@ void AMyPlayerCharacter::StopAiming()
 
 }
 
-void AMyPlayerCharacter::TakeDamage(float damage)
+float AMyPlayerCharacter::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent,
+	AController* EventInstigator, AActor* DamageCauser)
 {
-	CurrentPlayerHealth -= damage;
+	float DamageCaused = Super::TakeDamage(Damage, DamageEvent, EventInstigator, DamageCauser);
 
-	if (CurrentPlayerHealth > 0.0f)
-	{
-		CurrentPlayerHealth = 0.0f;
-	}
+	DamageCaused = FMath::Min(CurrentPlayerHealth, DamageCaused);
+
+	CurrentPlayerHealth -= DamageCaused;
+
+	return DamageCaused;
 }

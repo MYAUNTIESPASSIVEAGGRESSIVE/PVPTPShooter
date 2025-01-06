@@ -17,6 +17,5 @@ class PALADINVORCSHOOTER_API UMyPlayerWidget : public UUserWidget
 
 public:
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float PlayerHealthPct;
+
 };

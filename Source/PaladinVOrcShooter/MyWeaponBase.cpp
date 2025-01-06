@@ -4,6 +4,7 @@
 #include "MyWeaponBase.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "MyPlayerCharacter.h"
+#include "Engine/DamageEvents.h"
 #include "DrawDebugHelpers.h"
 
 // Sets default values
@@ -34,29 +35,25 @@ void AMyWeaponBase::ShootGun()
 {
 	if (WeaponData)
 	{
-		TArray<FHitResult> ShotHit;
+		FHitResult ShotHit;
 		FVector StartPos = GunMesh->GetComponentLocation();
 		FVector EndPos = (GunMesh->GetRightVector() * WeaponData->WeaponRange) + StartPos;
 		FCollisionQueryParams ColParams = FCollisionQueryParams();
 		ColParams.AddIgnoredActor(this);
-		bool bHasHit = GetWorld()->LineTraceMultiByChannel(OUT ShotHit, StartPos, EndPos, ECollisionChannel::ECC_PhysicsBody, ColParams);
+		//ColParams.AddIgnoredActor(GetParentActor());
+		bool bHasHit = GetWorld()->LineTraceSingleByChannel(ShotHit, StartPos, EndPos, ECollisionChannel::ECC_PhysicsBody, ColParams);
 
-		/*
-				if (bHasHit)
+		if (bHasHit)
 		{
-			for (FHitResult& Result : ShotHit)
+			if (auto PlayerOther = Cast<AMyPlayerCharacter>(ShotHit.GetActor()))
 			{
-				if (AActor* OtherPlayer = Result.GetActor())
-				{
-					AMyPlayerCharacter* PlayerHit = OtherPlayer->GetComponentByClass<AMyPlayerCharacter>();
+				FPointDamageEvent DMGEvent(WeaponData->WeaponMaxDamage, ShotHit, GunMesh->GetRightVector(), nullptr);
 
-					//PlayerHit->TakeDamage(WeaponData->WeaponMaxDamage);
+				PlayerOther->TakeDamage(WeaponData->WeaponMaxDamage, DMGEvent, GetInstigatorController(), this);
 
-					UE_LOG(LogTemp, Log, TEXT("PlayerHit!"));
-				}
+				UE_LOG(LogTemp, Log, TEXT("HIT"));
 			}
 		}
-		*/
 
 		DrawDebugLine(GetWorld(), StartPos, EndPos, FColor::Green, true, -1, 0, 1.f);
 	}
