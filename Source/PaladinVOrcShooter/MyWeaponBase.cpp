@@ -3,6 +3,7 @@
 
 #include "MyWeaponBase.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "MyPlayerCharacter.h"
 #include "DrawDebugHelpers.h"
 
 // Sets default values
@@ -33,12 +34,29 @@ void AMyWeaponBase::ShootGun()
 {
 	if (WeaponData)
 	{
-		FHitResult ShotHit;
+		TArray<FHitResult> ShotHit;
 		FVector StartPos = GunMesh->GetComponentLocation();
 		FVector EndPos = (GunMesh->GetRightVector() * WeaponData->WeaponRange) + StartPos;
 		FCollisionQueryParams ColParams = FCollisionQueryParams();
-		bool bHasHit = ActorLineTraceSingle(ShotHit, StartPos, EndPos, ECollisionChannel::ECC_PhysicsBody, ColParams);
+		ColParams.AddIgnoredActor(this);
+		bool bHasHit = GetWorld()->LineTraceMultiByChannel(OUT ShotHit, StartPos, EndPos, ECollisionChannel::ECC_PhysicsBody, ColParams);
 
+		/*
+				if (bHasHit)
+		{
+			for (FHitResult& Result : ShotHit)
+			{
+				if (AActor* OtherPlayer = Result.GetActor())
+				{
+					AMyPlayerCharacter* PlayerHit = OtherPlayer->GetComponentByClass<AMyPlayerCharacter>();
+
+					//PlayerHit->TakeDamage(WeaponData->WeaponMaxDamage);
+
+					UE_LOG(LogTemp, Log, TEXT("PlayerHit!"));
+				}
+			}
+		}
+		*/
 
 		DrawDebugLine(GetWorld(), StartPos, EndPos, FColor::Green, true, -1, 0, 1.f);
 	}
