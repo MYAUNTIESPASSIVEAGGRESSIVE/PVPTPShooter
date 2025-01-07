@@ -24,4 +24,20 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Players")
 	AMyPlayerCharacter* PlayerTwo;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Game Statistics")
+	int32 PlayerOneKills = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Game Statistics")
+	int32 PlayerTwoKills = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Game Statistics")
+	int32 PlayerOneDeaths = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Game Statistics")
+	int32 PlayerTwoDeaths = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Game Statistics")
+	int32 KillsToWin = 8;
+
 };

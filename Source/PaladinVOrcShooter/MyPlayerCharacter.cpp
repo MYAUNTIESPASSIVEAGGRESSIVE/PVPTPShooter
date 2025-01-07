@@ -9,6 +9,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "MyPlayerAnimInstance.h"
 #include "MyPlayerController.h"
+#include "MyPVPGameMode.h"
 #include "MyWeaponBase.h"
 
 // Sets default values
@@ -140,10 +141,22 @@ float AMyPlayerCharacter::TakeDamage(float Damage, struct FDamageEvent const& Da
 
 	CurrentPlayerHealth -= DamageCaused;
 
+	if (CurrentPlayerHealth <= 0)
+	{
+		BisDead = true;
+	}
+
+	UE_LOG(LogTemp, Log, TEXT("Damaged"));
+
 	return DamageCaused;
 }
 
 void AMyPlayerCharacter::DeathLogic()
+{
+
+}
+
+void AMyPlayerCharacter::RespawnLogic()
 {
 
 }

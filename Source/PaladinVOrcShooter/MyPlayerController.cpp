@@ -15,6 +15,7 @@ void AMyPlayerController::BeginPlay()
 	possesedPawn = Cast<AMyPlayerCharacter>(GetPawn());
 }
 
+
 void AMyPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
@@ -40,7 +41,8 @@ void AMyPlayerController::SetupInputComponent()
 			InputComponent->BindAction("Aiming", IE_Pressed, this, &AMyPlayerController::CastAiming);
 			InputComponent->BindAction("Aiming", IE_Released, this, &AMyPlayerController::CastStopAiming);
 		}
-		else
+		
+		if(gameMode->PlayerTwo == Cast<AMyPlayerCharacter>(GetPawn()))
 		{
 			UE_LOG(LogTemp, Log, TEXT("player2 bound"));
 

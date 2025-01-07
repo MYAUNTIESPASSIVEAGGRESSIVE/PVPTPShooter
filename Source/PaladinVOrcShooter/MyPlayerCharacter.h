@@ -65,6 +65,8 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Socket Name")
 	FString PlayerSocketName;
 
+	FTimerHandle RespawnTimerHandle;
+
 	// Functions
 	void Shoot();
 
@@ -76,5 +78,9 @@ public:
 
 	void MoveRight(float value);
 
+	UFUNCTION(BlueprintCallable)
 	void DeathLogic();
+
+	UFUNCTION(BlueprintCallable)
+	void RespawnLogic();
 };
