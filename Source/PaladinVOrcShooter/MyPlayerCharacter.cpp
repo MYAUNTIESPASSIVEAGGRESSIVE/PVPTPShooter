@@ -112,7 +112,7 @@ void AMyPlayerCharacter::MoveRight(float axis)
 
 void AMyPlayerCharacter::Shoot()
 {
-	if (MyWeapon)
+	if(MyWeapon) 
 	{
 		MyWeapon->ShootGun();
 	}
@@ -122,7 +122,6 @@ void AMyPlayerCharacter::Aiming()
 {
 	CameraHolder->TargetArmLength = 50.0f;
 
-	
 }
 
 void AMyPlayerCharacter::StopAiming()

@@ -20,9 +20,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 WeaponID;
 
-	UPROPERTY(EditAnywhere)
-	USkeletalMesh* WeaponMesh;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float WeaponRange;
 
@@ -47,14 +44,27 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY(BlueprintReadWrite)
 	USkeletalMeshComponent* GunMesh;
 
-	UPROPERTY(EditAnywhere)
-	UDataTable* WeaponDataTable;
-
-	FWeaponTable* WeaponData;
+	USkeletalMeshSocket* ShootPoint;
 
 public:	
+
 	void ShootGun();
+
+	void ReloadGun();
+
+	UPROPERTY(BlueprintReadWrite)
+	int32 MaxAmmo = 15;
+
+	UPROPERTY(BlueprintReadWrite)
+	int32 CurrAmmo;
+
+	UPROPERTY(BlueprintReadWrite)
+	int32 MaxReserveAmmo = 75;
+
+	UPROPERTY(BlueprintReadWrite)
+	int32 CurrReserveAmmo;
 
 };

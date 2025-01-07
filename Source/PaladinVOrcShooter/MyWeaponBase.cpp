@@ -12,50 +12,59 @@ AMyWeaponBase::AMyWeaponBase()
 {
 	GunMesh = CreateDefaultSubobject<USkeletalMeshComponent>("GunMeshComponent");
 	RootComponent = GunMesh;
+
+	CurrAmmo = MaxAmmo;
+
+	CurrReserveAmmo = MaxReserveAmmo;
 }
 
 // Called when the game starts or when spawned
 void AMyWeaponBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
-	if (WeaponDataTable)
-	{
-		static const FString PString = FString("Pistol");
-		WeaponData = WeaponDataTable->FindRow<FWeaponTable>(FName("Weapon_Pistol"),PString, true);
-
-		if (WeaponData)
-		{
-			GunMesh->SetSkeletalMesh(WeaponData->WeaponMesh);
-		}
-	}
 }
 
 void AMyWeaponBase::ShootGun()
 {
-	if (WeaponData)
+	if (CurrAmmo > 0)
 	{
-		FHitResult ShotHit;
-		FVector StartPos = GunMesh->GetComponentLocation();
-		FVector EndPos = (GunMesh->GetRightVector() * WeaponData->WeaponRange) + StartPos;
-		FCollisionQueryParams ColParams = FCollisionQueryParams();
-		//ColParams.AddIgnoredActor(this);
-		//ColParams.AddIgnoredActor(GetParentActor());
-		bool bHasHit = GetWorld()->LineTraceSingleByChannel(ShotHit, StartPos, EndPos, ECollisionChannel::ECC_PhysicsBody, ColParams);
-
-		if (bHasHit)
-		{
-			if (auto PlayerOther = Cast<AMyPlayerCharacter>(ShotHit.GetActor()))
-			{
-				FPointDamageEvent DMGEvent(WeaponData->WeaponMaxDamage, ShotHit, GunMesh->GetRightVector(), nullptr);
-
-				PlayerOther->TakeDamage(WeaponData->WeaponMaxDamage, DMGEvent, GetInstigatorController(), this);
-
-				UE_LOG(LogTemp, Log, TEXT("HIT"));
-			}
-		}
-
-		DrawDebugLine(GetWorld(), StartPos, EndPos, FColor::Green, true, -1, 0, 1.f);
+		CurrAmmo -= 1;
 	}
+	
+	if(CurrAmmo <= 0 && CurrReserveAmmo > 0)
+	{
+		ReloadGun();
+	}
+	else
+	{
+
+	}
+
+	FHitResult ShotHit;
+	FVector StartPos = GunMesh->GetComponentLocation();
+	FVector EndPos = (GunMesh->GetRightVector() * 200) + StartPos;
+	FCollisionQueryParams ColParams = FCollisionQueryParams();
+	ColParams.AddIgnoredActor(this);
+	//ColParams.AddIgnoredActor(GetParentActor());
+	bool bHasHit = GetWorld()->LineTraceSingleByChannel(ShotHit, StartPos, EndPos, ECollisionChannel::ECC_PhysicsBody, ColParams);
+
+	if (bHasHit)
+	{
+		if (auto PlayerOther = Cast<AMyPlayerCharacter>(ShotHit.GetActor()))
+		{
+			FPointDamageEvent DMGEvent(20, ShotHit, GunMesh->GetRightVector(), nullptr);
+			PlayerOther->TakeDamage(20, DMGEvent, GetInstigatorController(), this);
+			UE_LOG(LogTemp, Log, TEXT("HIT"));
+		}
+	}
+
+	DrawDebugLine(GetWorld(), StartPos, EndPos, FColor::Green, true, -1, 0, 1.f);
+}
+
+void AMyWeaponBase::ReloadGun()
+{
+	CurrAmmo = MaxAmmo;
+
+	CurrReserveAmmo -= 15;
 }
 
