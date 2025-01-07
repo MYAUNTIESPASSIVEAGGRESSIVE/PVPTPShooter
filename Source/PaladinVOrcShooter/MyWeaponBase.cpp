@@ -45,7 +45,6 @@ void AMyWeaponBase::ShootGun()
 	FVector EndPos = (GunMesh->GetRightVector() * 200) + StartPos;
 	FCollisionQueryParams ColParams = FCollisionQueryParams();
 	ColParams.AddIgnoredActor(this);
-	//ColParams.AddIgnoredActor(GetParentActor());
 	bool bHasHit = GetWorld()->LineTraceSingleByChannel(ShotHit, StartPos, EndPos, ECollisionChannel::ECC_PhysicsBody, ColParams);
 
 	if (bHasHit)

@@ -112,7 +112,7 @@ void AMyPlayerCharacter::MoveRight(float axis)
 
 void AMyPlayerCharacter::Shoot()
 {
-	if(MyWeapon) 
+	if(MyWeapon && MyWeapon->CurrAmmo > 0)
 	{
 		MyWeapon->ShootGun();
 	}
