@@ -52,6 +52,7 @@ void AMyPlayerCharacter::BeginPlay()
 
 	CurrentPlayerHealth = MaxPlayerHealth;
 
+	BisDead = false;
 
 	if (WeaponClass)
 	{
@@ -140,4 +141,9 @@ float AMyPlayerCharacter::TakeDamage(float Damage, struct FDamageEvent const& Da
 	CurrentPlayerHealth -= DamageCaused;
 
 	return DamageCaused;
+}
+
+void AMyPlayerCharacter::DeathLogic()
+{
+
 }

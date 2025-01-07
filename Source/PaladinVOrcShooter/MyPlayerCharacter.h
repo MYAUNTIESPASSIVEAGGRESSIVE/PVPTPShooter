@@ -54,6 +54,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Variables")
 	float MaxPlayerHealth = 100.0f;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Variables")
+	bool BisDead = false;
+
 	// Weapon Classes
 	UPROPERTY(EditAnywhere, Category = "Weapons Class")
 	TSubclassOf <AMyWeaponBase > WeaponClass;
@@ -72,4 +75,6 @@ public:
 	void MoveForward(float value);
 
 	void MoveRight(float value);
+
+	void DeathLogic();
 };
