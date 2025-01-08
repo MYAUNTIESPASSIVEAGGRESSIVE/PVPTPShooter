@@ -90,6 +90,36 @@ void AMyPlayerCharacter::Tick(float DeltaTime)
 void AMyPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+	UE_LOG(LogTemp, Log, TEXT("player1 bound"));
+
+	// Player World Movement
+	InputComponent->BindAxis("MoveForward", this, &AMyPlayerCharacter::MoveForward);
+	InputComponent->BindAxis("MoveRight", this, &AMyPlayerCharacter::MoveRight);
+
+	InputComponent->BindAxis("MoveForwardGP", this, &AMyPlayerCharacter::MoveForward);
+	InputComponent->BindAxis("MoveRightGP", this, &AMyPlayerCharacter::MoveRight);
+
+	// Player Camera Movememt
+	InputComponent->BindAxis("LookRight", this, &AMyPlayerCharacter::AddControllerPitchInput);
+	InputComponent->BindAxis("LookUp", this, &AMyPlayerCharacter::AddControllerYawInput);
+
+	InputComponent->BindAxis("LookRightGP", this, &AMyPlayerCharacter::AddControllerYawInput);
+	InputComponent->BindAxis("LookUpGP", this, &AMyPlayerCharacter::AddControllerPitchInput);
+
+	// Player Actions
+	InputComponent->BindAction("Jump", IE_Pressed, this, &AMyPlayerCharacter::Jump);
+	InputComponent->BindAction("Jump", IE_Released, this, &AMyPlayerCharacter::StopJumping);
+	InputComponent->BindAction("Shoot", IE_Pressed, this, &AMyPlayerCharacter::Shoot);
+	InputComponent->BindAction("Aiming", IE_Pressed, this, &AMyPlayerCharacter::Aiming);
+	InputComponent->BindAction("Aiming", IE_Released, this, &AMyPlayerCharacter::StopAiming);
+	//InputComponent->BindAction("Pause", IE_Released, this, &);
+
+	InputComponent->BindAction("JumpGP", IE_Pressed, this, &AMyPlayerCharacter::Jump);
+	InputComponent->BindAction("JumpGP", IE_Released, this, &AMyPlayerCharacter::StopJumping);
+	InputComponent->BindAction("ShootGP", IE_Pressed, this, &AMyPlayerCharacter::Shoot);
+	InputComponent->BindAction("AimingGP", IE_Pressed, this, &AMyPlayerCharacter::Aiming);
+	InputComponent->BindAction("AimingGP", IE_Released, this, &AMyPlayerCharacter::StopAiming);
 }
 
 void AMyPlayerCharacter::MoveForward(float axis)

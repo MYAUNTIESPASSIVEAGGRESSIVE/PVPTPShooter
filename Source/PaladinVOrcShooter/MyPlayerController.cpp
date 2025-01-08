@@ -12,7 +12,7 @@ void AMyPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 
-	possesedPawn = Cast<AMyPlayerCharacter>(GetPawn());
+	//AMyPVPGameMode* GameMode = Cast<AMyPVPGameMode>(UGameplayStatics::GetGameMode(this));
 }
 
 
@@ -20,49 +20,8 @@ void AMyPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
 
-	if (auto gameMode = Cast<AMyPVPGameMode>(GetWorld()->GetAuthGameMode()))
-	{
-		if (gameMode->PlayerOne == Cast<AMyPlayerCharacter>(GetPawn()))
-		{
-			UE_LOG(LogTemp, Log, TEXT("player1 bound"));
 
-			// Player One World Movement
-			InputComponent->BindAxis("MoveForward", this, &AMyPlayerController::CastMoveForward);
-			InputComponent->BindAxis("MoveRight", this, &AMyPlayerController::CastMoveRight);
 
-			// Player One Camera Movememt
-			InputComponent->BindAxis("LookRight", this, &AMyPlayerController::CastLookRight);
-			InputComponent->BindAxis("LookUp", this, &AMyPlayerController::CastLookUp);
-
-			// Player One Actions
-			InputComponent->BindAction("Jump", IE_Pressed, this, &AMyPlayerController::CastJump);
-			InputComponent->BindAction("Jump", IE_Released, this, &AMyPlayerController::CastStopJumping);
-			InputComponent->BindAction("Shoot", IE_Pressed, this, &AMyPlayerController::CastShoot);
-			InputComponent->BindAction("Aiming", IE_Pressed, this, &AMyPlayerController::CastAiming);
-			InputComponent->BindAction("Aiming", IE_Released, this, &AMyPlayerController::CastStopAiming);
-		}
-		
-		if(gameMode->PlayerTwo == Cast<AMyPlayerCharacter>(GetPawn()))
-		{
-			UE_LOG(LogTemp, Log, TEXT("player2 bound"));
-
-			// Player Two World Movement
-			InputComponent->BindAxis("MoveForwardGP", this, &AMyPlayerController::CastMoveForwardGP);
-			InputComponent->BindAxis("MoveRightGP", this, &AMyPlayerController::CastMoveRight);
-
-			// Player Two Camera Movememt
-			InputComponent->BindAxis("LookRightGP", this, &AMyPlayerController::CastLookRight);
-			InputComponent->BindAxis("LookUpGP", this, &AMyPlayerController::CastLookUp);
-
-			// Player Two Actions
-			InputComponent->BindAction("JumpGP", IE_Pressed, this, &AMyPlayerController::CastJump);
-			InputComponent->BindAction("JumpGP", IE_Released, this, &AMyPlayerController::CastStopJumping);
-			InputComponent->BindAction("ShootGP", IE_Pressed, this, &AMyPlayerController::CastShoot);
-			InputComponent->BindAction("AimingGP", IE_Pressed, this, &AMyPlayerController::CastAiming);
-			InputComponent->BindAction("AimingGP", IE_Released, this, &AMyPlayerController::CastStopAiming);
-			InputComponent->BindAction("AimingGP", IE_Released, this, &AMyPlayerController::CastStopAiming);
-		}
-	}
 }
 
 
@@ -72,14 +31,6 @@ void AMyPlayerController::CastMoveForward(float value)
 	if (possesedPawn)
 	{
 		possesedPawn->MoveForward(value);
-	}
-}
-
-void AMyPlayerController::CastMoveForwardGP(float value)
-{
-	if (possesedPawn)
-	{
-		possesedPawn->MoveForwardGP(value);
 	}
 }
 

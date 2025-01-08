@@ -25,3 +25,8 @@ void AMyPowerUpActor::Tick(float DeltaTime)
 
 }
 
+void AMyPowerUpActor::PowerUpEffect()
+{
+
+}
+
