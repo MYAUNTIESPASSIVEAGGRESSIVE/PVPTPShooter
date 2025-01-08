@@ -49,6 +49,9 @@ public:
 	void CastMoveForward(float value);
 
 	UFUNCTION(BlueprintCallable)
+	void CastMoveForwardGP(float value);
+
+	UFUNCTION(BlueprintCallable)
 	void CastLookRight(float value);
 
 	UFUNCTION(BlueprintCallable)

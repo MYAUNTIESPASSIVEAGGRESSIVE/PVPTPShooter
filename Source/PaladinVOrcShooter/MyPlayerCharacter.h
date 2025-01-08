@@ -76,6 +76,8 @@ public:
 
 	void MoveForward(float value);
 
+	void MoveForwardGP(float value);
+
 	void MoveRight(float value);
 
 	UFUNCTION(BlueprintCallable)

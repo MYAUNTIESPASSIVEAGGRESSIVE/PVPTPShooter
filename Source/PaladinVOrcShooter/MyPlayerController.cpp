@@ -47,7 +47,7 @@ void AMyPlayerController::SetupInputComponent()
 			UE_LOG(LogTemp, Log, TEXT("player2 bound"));
 
 			// Player Two World Movement
-			InputComponent->BindAxis("MoveForwardGP", this, &AMyPlayerController::CastMoveForward);
+			InputComponent->BindAxis("MoveForwardGP", this, &AMyPlayerController::CastMoveForwardGP);
 			InputComponent->BindAxis("MoveRightGP", this, &AMyPlayerController::CastMoveRight);
 
 			// Player Two Camera Movememt
@@ -72,6 +72,14 @@ void AMyPlayerController::CastMoveForward(float value)
 	if (possesedPawn)
 	{
 		possesedPawn->MoveForward(value);
+	}
+}
+
+void AMyPlayerController::CastMoveForwardGP(float value)
+{
+	if (possesedPawn)
+	{
+		possesedPawn->MoveForwardGP(value);
 	}
 }
 
