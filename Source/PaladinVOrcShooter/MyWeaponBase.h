@@ -67,4 +67,7 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	int32 CurrReserveAmmo;
 
+	UPROPERTY(BlueprintReadWrite)
+	int32 Damage = 20;
+
 };

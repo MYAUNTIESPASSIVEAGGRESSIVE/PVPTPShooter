@@ -46,7 +46,7 @@ public:
 
 	// Player Variables
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement Variables")
-	float MovementSpeed = 600.0f;
+	float MovementSpeed = 1000.0f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Variables")
 	float CurrentPlayerHealth = 100.0f;
@@ -76,13 +76,5 @@ public:
 
 	void MoveForward(float value);
 
-	void MoveForwardGP(float value);
-
 	void MoveRight(float value);
-
-	UFUNCTION(BlueprintCallable)
-	void DeathLogic();
-
-	UFUNCTION(BlueprintCallable)
-	void RespawnLogic();
 };

@@ -131,15 +131,6 @@ void AMyPlayerCharacter::MoveForward(float axis)
 	AddMovementInput(ForwardDirection, axis);
 }
 
-void AMyPlayerCharacter::MoveForwardGP(float axis)
-{
-	FRotator Rotation = Controller->GetControlRotation();
-	FRotator YawRotation(0.0f, Rotation.Yaw, 0.0f);
-
-	FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-	AddMovementInput(ForwardDirection, axis);
-}
-
 void AMyPlayerCharacter::MoveRight(float axis)
 {
 	FRotator Rotation = Controller->GetControlRotation();
@@ -187,14 +178,4 @@ float AMyPlayerCharacter::TakeDamage(float Damage, struct FDamageEvent const& Da
 	UE_LOG(LogTemp, Log, TEXT("Damaged"));
 
 	return DamageCaused;
-}
-
-void AMyPlayerCharacter::DeathLogic()
-{
-
-}
-
-void AMyPlayerCharacter::RespawnLogic()
-{
-
 }
