@@ -45,15 +45,17 @@ void AMyWeaponBase::ShootGun()
 	FVector EndPos = (GunMesh->GetRightVector() * 2000) + StartPos;
 	FCollisionQueryParams ColParams = FCollisionQueryParams();
 	ColParams.AddIgnoredActor(this);
+	ColParams.AddIgnoredActor(GetParentActor());
 	bool bHasHit = GetWorld()->LineTraceSingleByChannel(GunShotHit, StartPos, EndPos, ECollisionChannel::ECC_PhysicsBody, ColParams);
 
 	if (bHasHit)
 	{
-		if (auto PlayerOther = Cast<AMyPlayerCharacter>(GunShotHit.GetActor()))
+		if (auto OtherHitBox = Cast<AMyPlayerCharacter>(GunShotHit.GetActor()))
 		{
-			FPointDamageEvent DMGEvent(20, GunShotHit, GunMesh->GetRightVector(), nullptr);
-			PlayerOther->TakeDamage(20, DMGEvent, GetInstigatorController(), this);
-			UE_LOG(LogTemp, Log, TEXT("HIT"));
+			FPointDamageEvent DMGEvent(Damage, GunShotHit, GunMesh->GetRightVector(), nullptr);
+			OtherHitBox->TakeDamage(Damage, DMGEvent, GetInstigatorController(), this);
+			UE_LOG(LogTemp, Log, TEXT("Hit!"));
+			GLog->Log(GunShotHit.GetActor()->GetName());
 		}
 	}
 

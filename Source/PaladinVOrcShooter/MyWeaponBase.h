@@ -7,6 +7,7 @@
 #include "Engine/DataTable.h"
 #include "MyWeaponBase.generated.h"
 
+// this is obselete
 USTRUCT(BlueprintType)
 struct FWeaponTable : public FTableRowBase
 {

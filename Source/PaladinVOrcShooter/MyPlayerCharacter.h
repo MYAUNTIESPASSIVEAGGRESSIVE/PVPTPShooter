@@ -39,6 +39,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = TPCamera)
 	class UCameraComponent* PlayerCamera;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = HitBox)
+	UCapsuleComponent* PlayerHitBox;
 
 	// Gamepad Checker
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input Type")
