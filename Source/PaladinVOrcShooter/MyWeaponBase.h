@@ -51,10 +51,11 @@ protected:
 	USkeletalMeshSocket* ShootPoint;
 
 public:	
-
+	/*
 	void ShootGun();
 
 	void ReloadGun();
+	*/
 
 	UPROPERTY(BlueprintReadWrite)
 	int32 MaxAmmo = 15;

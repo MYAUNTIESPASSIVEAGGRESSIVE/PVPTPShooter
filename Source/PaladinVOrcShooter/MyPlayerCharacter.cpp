@@ -110,14 +110,14 @@ void AMyPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 	// Player Actions
 	InputComponent->BindAction("Jump", IE_Pressed, this, &AMyPlayerCharacter::Jump);
 	InputComponent->BindAction("Jump", IE_Released, this, &AMyPlayerCharacter::StopJumping);
-	InputComponent->BindAction("Shoot", IE_Pressed, this, &AMyPlayerCharacter::Shoot);
+	//InputComponent->BindAction("Shoot", IE_Pressed, this, &AMyPlayerCharacter::Shoot);
 	InputComponent->BindAction("Aiming", IE_Pressed, this, &AMyPlayerCharacter::Aiming);
 	InputComponent->BindAction("Aiming", IE_Released, this, &AMyPlayerCharacter::StopAiming);
 	//InputComponent->BindAction("Pause", IE_Released, this, &);
 
 	InputComponent->BindAction("JumpGP", IE_Pressed, this, &AMyPlayerCharacter::Jump);
 	InputComponent->BindAction("JumpGP", IE_Released, this, &AMyPlayerCharacter::StopJumping);
-	InputComponent->BindAction("ShootGP", IE_Pressed, this, &AMyPlayerCharacter::Shoot);
+	//InputComponent->BindAction("ShootGP", IE_Pressed, this, &AMyPlayerCharacter::Shoot);
 	InputComponent->BindAction("AimingGP", IE_Pressed, this, &AMyPlayerCharacter::Aiming);
 	InputComponent->BindAction("AimingGP", IE_Released, this, &AMyPlayerCharacter::StopAiming);
 }
@@ -140,13 +140,15 @@ void AMyPlayerCharacter::MoveRight(float axis)
 	AddMovementInput(RightDirection, axis);
 }
 
+/*
 void AMyPlayerCharacter::Shoot()
 {
 	if(MyWeapon && MyWeapon->CurrAmmo > 0)
 	{
-		MyWeapon->ShootGun();
+		//MyWeapon->ShootGun();
 	}
 }
+*/
 
 void AMyPlayerCharacter::Aiming()
 {
@@ -161,6 +163,7 @@ void AMyPlayerCharacter::StopAiming()
 
 }
 
+/*
 float AMyPlayerCharacter::TakeDamage(float Damage, struct FDamageEvent const& DamageEvent,
 	AController* EventInstigator, AActor* DamageCauser)
 {
@@ -179,3 +182,4 @@ float AMyPlayerCharacter::TakeDamage(float Damage, struct FDamageEvent const& Da
 
 	return DamageCaused;
 }
+*/

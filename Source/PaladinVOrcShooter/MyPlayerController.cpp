@@ -80,7 +80,7 @@ void AMyPlayerController::CastShoot()
 {
 	if (possesedPawn)
 	{
-		possesedPawn->Shoot();
+		//possesedPawn->Shoot();
 	}
 }
 

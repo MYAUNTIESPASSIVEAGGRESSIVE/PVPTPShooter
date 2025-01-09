@@ -24,6 +24,7 @@ void AMyWeaponBase::BeginPlay()
 	Super::BeginPlay();
 }
 
+/*
 void AMyWeaponBase::ShootGun()
 {
 	if (CurrAmmo > 0)
@@ -68,4 +69,5 @@ void AMyWeaponBase::ReloadGun()
 
 	CurrReserveAmmo -= 15;
 }
+*/
 
